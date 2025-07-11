@@ -1,0 +1,40 @@
+
+    
+    <div class="card border-0 rounded-4 mb-4">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-0">
+          <span class="h4 fw-semibold mb-0">{{ post.title }}</span>
+          <div>
+            <span class="badge bg-secondary bg-opacity-10 text-secondary me-2">ID: {{ post.id }}</span>
+            <span class="badge border bg-transparent bg-opacity-10 text-secondary">User: {{ post.userId }}</span>
+          </div>
+        </div>
+        <hr style="height: 2px; border-width: 0; background-color:  #dee2e6; border-radius: 3px;">
+        <div class="text-secondary fs-6" style="white-space: pre-line;">
+          {{ post.body }}
+        </div>
+      </div>
+    </div>
+    <div class="card border-0 rounded-4">
+      <div class="card-body">
+        <h5 class="fw-bold mb-3">Post Information</h5>
+        <div class="row">
+          <div class="col-md-6 mb-2">
+            <div class="fw-semibold text-secondary">Post ID</div>
+            <div>{{ post.id }}</div>
+          </div>
+          <div class="col-md-6 mb-2">
+            <div class="fw-semibold text-secondary">User ID</div>
+            <div>{{ post.userId }}</div>
+          </div>
+          <div class="col-md-6 mb-2">
+            <div class="fw-semibold text-secondary">Title Length</div>
+            <div>{{ post.title?.length }} characters</div>
+          </div>
+          <div class="col-md-6 mb-2">
+            <div class="fw-semibold text-secondary">Body Length</div>
+            <div>{{ post.body?.length }} characters</div>
+          </div>
+        </div>
+      </div>
+    </div>
