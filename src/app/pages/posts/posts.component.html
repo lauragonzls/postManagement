@@ -74,7 +74,7 @@
 
         <app-edit-card [post]="selectedPost"></app-edit-card>
       </ng-container>
-      <custom-popup *ngIf="showPopup" (close)="showPopup = false"
+      <custom-popup *ngIf="showPopup" (close)="goBack()"
         (confirm)="deletePost()"></custom-popup>
     </div>
   </div>

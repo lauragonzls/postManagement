@@ -9,7 +9,7 @@
   z-index: 1000;
   border: 1px solid #ccc;
 }
-h2{
+h4{
     color: red;
 }
 
@@ -30,4 +30,71 @@ button {
     display: flex;
     align-items: center;
     gap: 8px;
+}
+/* Fondo oscuro detrás del popup */
+.popup-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+/* Contenedor del popup */
+.popup-container {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 2rem;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  font-family: 'Segoe UI', sans-serif;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Encabezado (opcional) */
+.popup-header {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+/* Botones */
+.popup-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.popup-button {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.popup-button.confirm {
+  background-color: #0078D4;
+  color: white;
+}
+
+.popup-button.confirm:hover {
+  background-color: #005EA2;
+}
+
+.popup-button.cancel {
+  background-color: #E1E1E1;
+  color: #333;
+}
+
+.popup-button.cancel:hover {
+  background-color: #C8C8C8;
 }

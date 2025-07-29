@@ -71,8 +71,10 @@ export class PostsComponent implements OnInit {
     });
   }
   deletePost(): void {
-    this.showPopup = false;
     console.log('Deleting post:', this.selectedPost?.id);
+    this.showPopup = false;
+    this.selectedPost = null
+
     // this.postsService.deletePost(this.selectedPost.id).subscribe(() => {
     //   this.posts = this.posts.filter((post) => post.id !== id);
     //   this.selectedPost = null;
