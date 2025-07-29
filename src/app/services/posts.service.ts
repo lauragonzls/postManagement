@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Post } from '../models/post.model';
 import { Observable } from 'rxjs';
 
+
 @Injectable({ providedIn: 'root' })
 export class PostsService {
   private apiUrl = 'https://jsonplaceholder.typicode.com/posts';

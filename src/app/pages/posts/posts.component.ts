@@ -5,11 +5,12 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { PostCardComponent } from '../../components/post-card/post-card.component';
 import { EditCardComponent } from '../../components/edit-card/edit-card.component';
+import { CustomPopup } from '../../custom-popup/custom-popup';
 
 @Component({
   selector: 'app-posts',
   standalone: true,
-  imports: [CommonModule, PostCardComponent, EditCardComponent],
+  imports: [CommonModule, PostCardComponent, EditCardComponent, CustomPopup],
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.css'],
 })
@@ -40,9 +41,12 @@ export class PostsComponent implements OnInit {
   goBack(): void {
     this.selectedPost = null;
     this.isEditing = false;
+    this.showPopup = false;
   }
 
   isEditing: boolean = false;
+  showPopup: boolean = false;
+
 
   editPost(id: number): void {
     const post = this.posts.find((p) => p.id === id);
@@ -60,12 +64,34 @@ export class PostsComponent implements OnInit {
     this.goBack();
   }
 
-  deletePost(id: number): void {
-    if (confirm('¿Are you sure you want to delete this post?')) {
-      this.postsService.deletePost(id).subscribe(() => {
-        alert('Post deleted successfully');
-        this.loadPosts();
-      });
-    }
+  openPostPopup(id: number): void {
+    this.showPopup = true;
+    this.postsService.getPost(id).subscribe((post) => {
+      this.selectedPost = post;
+    });
   }
+  deletePost(): void {
+    this.showPopup = false;
+    console.log('Deleting post:', this.selectedPost?.id);
+    // this.postsService.deletePost(this.selectedPost.id).subscribe(() => {
+    //   this.posts = this.posts.filter((post) => post.id !== id);
+    //   this.selectedPost = null;
+    //   this.isEditing = false;
+    //   this.showPopup = false;
+    // });
+  }
+  createPost(id:number, title:string, body:string): void {
+    const newPost: Post = {
+      userId: 1,
+      id: 0,
+      title: title,
+      body: body,
+    };
+
+    this.postsService.createPost(newPost).subscribe((createdPost) => {
+      this.posts.push(createdPost);
+      this.selectedPost = createdPost;
+      this.isEditing = true;
+    });
+}
 }

@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; 
-import { Router } from '@angular/router';
 import { PostsService } from '../../services/posts.service';
+import { Post } from '../../models/post.model';
+
 
 @Component({
   selector: 'app-edit-card',
@@ -11,26 +12,23 @@ import { PostsService } from '../../services/posts.service';
     CommonModule,
     FormsModule 
   ],
-
   templateUrl: './edit-card.component.html',
   styleUrls: ['./edit-card.component.css']
 })
 export class EditCardComponent {
   @Input() post: any;
+  @Output() save = new EventEmitter<Post>();
   
-  constructor(private postsService: PostsService, private router: Router) {}
+  constructor(private postsService: PostsService) {}
 
   onUpdate() {
-    console.log('Updating post:', this.post);
-    this.postsService.updatePost(this.post.id, this.post).subscribe(() => {
-      console.log('Post updated successfully');
-      this.router.navigate(['/posts']);
-    });
-  } 
-
+    if (this.post && this.post.id) {
+      this.postsService.updatePost(this.post.id, this.post).subscribe((updatedPost) => {
+        this.save.emit(updatedPost);
+      });
+    }
+  }
   onCancel() {
   }
-  goBack(): void {
-    this.post = null;
-  }
+  
 }

@@ -11,9 +11,5 @@ import { Router } from '@angular/router';
 })
 export class PostCardComponent {
   @Input() post: any;
-
-  constructor(private router: Router) {}
-  goBack(): void {
-    this.router.navigate(['/posts']);
-  }
+ 
 }

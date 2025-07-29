@@ -1,12 +1,6 @@
 
 
-<div class="container py-4">
-  <div class="d-flex align-items-center mb-3">
-    <button class="btn p-0 me-2" (click)="goBack()">
-          <span class="fs-3">&#8592; </span>
-        </button>
-    <h2 class="fw-bold mb-0">Edit Post</h2>
-  </div>
+<div class="container py-0">
   <form (ngSubmit)="onUpdate()" #editForm="ngForm" class="card border-0 rounded-4 p-4">
     <div class="mb-3">
       <label for="title" class="form-label fw-semibold">Title *</label>
